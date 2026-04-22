@@ -1,0 +1,32 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.idea/
+.vscode/
+dist/
+build/
+*.egg-info/
+assets/figures/*.tmp
+*.log
+
+# Potentially sensitive local artifacts
+data/
+outputs/
+checkpoints/
+*.csv
+*.parquet
+*.feather
+*.h5
+*.sqlite
+*.db
+
+# Local configs (keep only templates in repo)
+config/*.yaml
+config/*.yml
+config/*.json
