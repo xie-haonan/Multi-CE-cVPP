@@ -40,7 +40,7 @@ Multi-CE-cVPP 旨在构建一个可扩展、可审计、可解释的多能互补
 - `docs/MATHEMATICAL_BOUNDARY.md`：关键守恒方程与约束表达
 - `src/interfaces/`：高维接口与占位函数（仅文档化，不含业务实现）
 - `assets/figures/`：对外展示图表（请替换为你的实际成果图）
-- **`showcase/selca/`**：**SE-LCA 生命周期量化可视化**（静态页 + 预计算 JSON；适合企业展示）。说明见 [`showcase/selca/README.md`](showcase/selca/README.md)。本地：`cd showcase/selca && ./serve.sh`。**公网**：在仓库 **Settings → Pages** 将 **Source** 设为 **GitHub Actions**，推送 `main` 后由 [`.github/workflows/deploy-selca-pages.yml`](.github/workflows/deploy-selca-pages.yml) 发布。**正式入口（可挂在个人站 Projects）：** **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**；访问仓库根路径 `https://xie-haonan.github.io/Multi-CE-cVPP/` 会自动跳转到 `selca/`。（与 [个人主页](https://xie-haonan.github.io/) 同属 `github.io` 域名，本链接为项目站子路径。）
+- **`showcase/selca/`**：源码目录（开发与本地预览）。**公网入口（推荐）：** **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`** — 对应仓库根目录 **`selca/`**（由 [`scripts/sync_selca_pages_folder.sh`](scripts/sync_selca_pages_folder.sh) 从 `showcase/selca` 同步），在 **未启用「GitHub Actions」部署**、而使用 **「从分支构建 Pages（Jekyll）」** 时也可访问。若你已把 Pages 改为 **GitHub Actions**，则由 [`.github/workflows/deploy-selca-pages.yml`](.github/workflows/deploy-selca-pages.yml) 发布同一子路径；**请勿**同时使用两种 Source（在 Settings → Pages 中只选一种）。另：**`https://xie-haonan.github.io/Multi-CE-cVPP/showcase/selca/`** 在 Jekyll 构建下通常也可打开，但对外链接建议统一为 **`/selca/`**。
 
 ## 展示图（Illustrative）
 

@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "title": "SE-LCA 示范算例",
+    "description": "与私有内核 demo.py 同口径的聚合结果快照（公开展示用，非实时计算）。",
+    "units": {
+      "capacity": "kW",
+      "mass": "kg",
+      "energy": "kWh",
+      "emissions_mass": "kg"
+    }
+  },
+  "inputs": {
+    "equipment_capacities_kw": {
+      "pv": 154.8,
+      "gasifier": 399.1,
+      "bioICE": 834.0,
+      "orc": 49.96,
+      "tss": 218.74,
+      "gshp": 1325.19,
+      "ec": 1200.0,
+      "gb": 1500.0
+    },
+    "purchased_electricity_kwh_net": 1697733.4100000001,
+    "purchased_kwh": 1697749.87,
+    "sold_kwh": 16.46
+  },
+  "construction": {
+    "construction_electricity_kwh": 44859.121600000006,
+    "per_equipment": [
+      {
+        "equipment": "bioICE",
+        "capacity_kw": 834.0,
+        "materials_kg": {
+          "steel": 8173.200000000001,
+          "aluminum": 0.0,
+          "copper": 0.0,
+          "pvc": 0.0,
+          "glass": 0.0
+        },
+        "construction_electricity_kwh": 5337.6
+      },
+      {
+        "equipment": "ec",
+        "capacity_kw": 1200.0,
+        "materials_kg": {
+          "steel": 4896.0,
+          "aluminum": 48.0,
+          "copper": 1224.0,
+          "pvc": 2448.0,
+          "glass": 0.0
+        },
+        "construction_electricity_kwh": 5580.0
+      },
+      {
+        "equipment": "gasifier",
+        "capacity_kw": 399.1,
+        "materials_kg": {
+          "steel": 758.29,
+          "aluminum": 0.0,
+          "copper": 0.0,
+          "pvc": 0.0,
+          "glass": 0.0
+        },
+        "construction_electricity_kwh": 478.92
+      },
+      {
+        "equipment": "gb",
+        "capacity_kw": 1500.0,
+        "materials_kg": {
+          "steel": 2250.0,
+          "aluminum": 60.0,
+          "copper": 0.0,
+          "pvc": 0.0,
+          "glass": 0.0
+        },
+        "construction_electricity_kwh": 1500.0
+      },
+      {
+        "equipment": "gshp",
+        "capacity_kw": 1325.19,
+        "materials_kg": {
+          "steel": 17094.951,
+          "aluminum": 6228.393000000001,
+          "copper": 5168.241,
+          "pvc": 0.0,
+          "glass": 0.0
+        },
+        "construction_electricity_kwh": 18552.66
+      },
+      {
+        "equipment": "orc",
+        "capacity_kw": 49.96,
+        "materials_kg": {
+          "steel": 775.3792,
+          "aluminum": 0.0,
+          "copper": 0.0,
+          "pvc": 0.0,
+          "glass": 0.0
+        },
+        "construction_electricity_kwh": 497.6016000000001
+      },
+      {
+        "equipment": "pv",
+        "capacity_kw": 154.8,
+        "materials_kg": {
+          "steel": 4179.6,
+          "aluminum": 1625.4,
+          "copper": 0.0,
+          "pvc": 1424.16,
+          "glass": 12384.0
+        },
+        "construction_electricity_kwh": 12693.6
+      },
+      {
+        "equipment": "tss",
+        "capacity_kw": 218.74,
+        "materials_kg": {
+          "steel": 218.74,
+          "aluminum": 0.0,
+          "copper": 0.0,
+          "pvc": 0.0,
+          "glass": 0.0
+        },
+        "construction_electricity_kwh": 218.74
+      }
+    ],
+    "raw_material_no_recycling_kg": {
+      "steel": 38346.1602,
+      "aluminum": 7961.7930000000015,
+      "copper": 6392.241,
+      "pvc": 3872.16,
+      "glass": 12384.0
+    },
+    "raw_material_with_recycling_kg": {
+      "steel": 3834.616019999999,
+      "aluminum": 796.1793,
+      "copper": 639.2240999999999,
+      "pvc": 3872.16,
+      "glass": 12384.0
+    },
+    "total_equipment_investment_cost_usd": 1564311.37,
+    "annual_investment_cost_usd": 136383.79376730145,
+    "annual_maintenance_cost_usd": 2727.67587534603,
+    "total_annualized_cost_usd": 139111.46964264748
+  },
+  "energy": {
+    "material_production_electricity_kwh_no_recycling": 456345.93744000007,
+    "material_production_electricity_kwh_with_recycling": 128642.22734399998,
+    "traditional_energy_merged_kwh": {
+      "purchased_electricity": 2198938.4690400003
+    },
+    "traditional_energy_with_recycling_kwh": {
+      "purchased_electricity": 1871234.7589440001
+    }
+  },
+  "pollutants_kg": {
+    "from_materials_no_recycling": {
+      "co": 1074.378483,
+      "co2": 296846.6644200001,
+      "ch4": 2223.4295226,
+      "so2": 2148.0366251400005,
+      "nox": 1037.5400574000003,
+      "pm25": 2979.3191250000004
+    },
+    "from_materials_with_recycling": {
+      "co": 111.27128669999998,
+      "co2": 32020.01049,
+      "ch4": 222.34295225999995,
+      "so2": 238.91263211400002,
+      "nox": 154.75056894,
+      "pm25": 383.6179893
+    },
+    "from_energy_no_recycling": {
+      "co": 4397.87693808,
+      "co2": 717667.5481405848,
+      "ch4": 6.596815407120001,
+      "so2": 6904.6667927856015,
+      "nox": 2493.5962238913603,
+      "pm25": 134.13524661144
+    },
+    "from_energy_with_recycling": {
+      "co": 3742.469517888,
+      "co2": 610714.8882765534,
+      "ch4": 5.613704276832,
+      "so2": 5875.67714308416,
+      "nox": 2121.980216642496,
+      "pm25": 114.145320295584
+    },
+    "total_no_recycling": {
+      "co": 5472.255421080001,
+      "co2": 1014514.212560585,
+      "ch4": 2230.02633800712,
+      "so2": 9052.703417925602,
+      "nox": 3531.1362812913603,
+      "pm25": 3113.4543716114404
+    },
+    "total_with_recycling": {
+      "co": 3853.740804588,
+      "co2": 642734.8987665534,
+      "ch4": 227.95665653683196,
+      "so2": 6114.58977519816,
+      "nox": 2276.730785582496,
+      "pm25": 497.76330959558396
+    }
+  },
+  "equivalent_emissions_kg": {
+    "no_recycling": {
+      "co2_eq": 1077761.5319219746,
+      "so2_eq": 11524.498814829554,
+      "pm25_eq": 21372.93175005749
+    },
+    "with_recycling": {
+      "co2_eq": 659083.2109675908,
+      "so2_eq": 7708.301325105907,
+      "pm25_eq": 12798.503118146837
+    }
+  },
+  "downstream_payload_keys": [
+    "equipment_construction",
+    "material_production_electricity_kwh",
+    "traditional_energy_consumption_kwh",
+    "pollutant_emissions_kg",
+    "equivalent_emissions_kg"
+  ]
+}

@@ -1,0 +1,187 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SE-LCA 生命周期量化展示 | Multi-CE-cVPP</title>
+    <meta
+      name="description"
+      content="多能互补社区虚拟电厂 — 可持续评价（SE-LCA）示范算例可视化。公开展示快照，不含可执行内核。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div>
+            <h1>Multi-CE-cVPP · SE-LCA</h1>
+            <span>Sustainability-equivalent LCA layer · Showcase</span>
+          </div>
+        </div>
+        <nav class="nav" aria-label="页面内导航">
+          <a href="#overview">总览</a>
+          <a href="#construction">建设期</a>
+          <a href="#energy">能源</a>
+          <a href="#emissions">排放</a>
+          <a href="#compliance">合规</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero" id="overview">
+        <div class="hero-badge">示范算例 · 与私有内核 demo 同口径快照</div>
+        <h2>面向企业合作的<br />可持续生命周期量化视图</h2>
+        <p class="hero-lead">
+          本页基于<strong>设备安装容量（kW）</strong>与<strong>净购电（kWh）</strong>等系统级输入，展示建设期原材料、合并能源路径、空气污染物及
+          CO₂-eq / SO₂-eq / PM2.5-eq 等效排放的聚合结果。图表数据为<strong>预计算 JSON 快照</strong>，便于公开展示与路演；可运行内核与因子库在受控私有仓库。
+        </p>
+        <div class="hero-note">
+          <strong>保密与边界：</strong>此处不包含业务敏感时序数据、实盘策略与完整因子溯源表。合作洽谈可在 NDA
+          框架下审阅私有核心仓库与论文级数据锚点。
+        </div>
+      </section>
+
+      <div class="kpi-grid" id="kpi-root" aria-live="polite"></div>
+
+      <section class="block" id="construction">
+        <div class="block-head">
+          <div>
+            <h3>建设期与设备清单</h3>
+            <p>装机分解、建设期耗电及按设备的原材料毛需求（kg = kg/kW × kW）。</p>
+          </div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h4>设备装机容量</h4>
+            <div class="canvas-wrap"><canvas id="chart-capacity"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h4>建设期耗电（按设备）</h4>
+            <div class="canvas-wrap"><canvas id="chart-construction-elec"></canvas></div>
+          </div>
+        </div>
+        <div class="chart-grid" style="margin-top: 1.25rem">
+          <div class="chart-card">
+            <h4>原材料：无回收 vs 考虑回收（合计）</h4>
+            <div class="canvas-wrap"><canvas id="chart-materials-compare"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h4>考虑回收情景 — 原材料构成</h4>
+            <div class="canvas-wrap"><canvas id="chart-materials-donut"></canvas></div>
+          </div>
+        </div>
+        <div class="block-head" style="margin-top: 1.5rem">
+          <div>
+            <h3 style="font-size: 1rem">按设备原材料毛需求（kg）</h3>
+            <p>与内核线性 BOM 一致；有回收时合计见上图「考虑回收」列。</p>
+          </div>
+        </div>
+        <div class="table-wrap" id="table-equipment"></div>
+      </section>
+
+      <section class="block" id="energy">
+        <div class="block-head">
+          <div>
+            <h3>能源路径</h3>
+            <p>材料生产用电并入购电路径后的合并 kWh（无回收 / 有回收两套）。</p>
+          </div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h4>合并购电量对比</h4>
+            <div class="canvas-wrap"><canvas id="chart-energy-compare"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h4>材料生产阶段耗电</h4>
+            <div class="canvas-wrap"><canvas id="chart-material-elec"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="emissions">
+        <div class="block-head">
+          <div>
+            <h3>污染物排放与等效排放</h3>
+            <p>材料路径与能源路径分项及合计；等效排放为内核转换矩阵加权结果。</p>
+          </div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h4>空气污染物合计（有回收）— 材料 vs 能源路径</h4>
+            <div class="canvas-wrap"><canvas id="chart-pollutant-stack"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h4>空气污染物合计：无回收 vs 有回收</h4>
+            <div class="canvas-wrap"><canvas id="chart-pollutant-compare"></canvas></div>
+          </div>
+        </div>
+        <div class="chart-grid" style="margin-top: 1.25rem">
+          <div class="chart-card">
+            <h4>等效排放（三种指标）</h4>
+            <div class="canvas-wrap"><canvas id="chart-equivalent"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="compliance">
+        <div class="block-head">
+          <div>
+            <h3>方法学与合规提示</h3>
+            <p>完整 LCA 研究须界定目标与范围、数据质量与审查；下列为国际通用框架引用。</p>
+          </div>
+        </div>
+        <div class="hero-note" style="border-left-color: var(--accent)">
+          <ul style="margin: 0; padding-left: 1.1rem">
+            <li>
+              <strong>ISO 14040:2006</strong> —
+              <a href="https://www.iso.org/standard/37456.html" target="_blank" rel="noopener"
+                >Environmental management — LCA — Principles and framework</a
+              >
+            </li>
+            <li>
+              <strong>ISO 14044:2006</strong> —
+              <a href="https://www.iso.org/standard/38498.html" target="_blank" rel="noopener"
+                >Environmental management — LCA — Requirements and guidelines</a
+              >
+            </li>
+          </ul>
+          <p style="margin: 0.75rem 0 0; font-size: 0.82rem">
+            本展示页数值为<strong>课题算例快照</strong>；若用于政策或合规披露，须在私有内核中绑定主管部门或标准出版社发布的排放因子官方版本，并保留检索日期与文件链接（见私有仓库 README 第五节）。
+          </p>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p><strong>Multi-CE-cVPP</strong>（Showcase Edition）— 架构与接口公开展示。</p>
+        <p>
+          线上入口（可挂在个人站 Projects）：<a
+            href="https://xie-haonan.github.io/Multi-CE-cVPP/selca/"
+            >https://xie-haonan.github.io/Multi-CE-cVPP/selca/</a
+          >
+          · 数据：<code>snapshot/selca_demo_snapshot.json</code> · 本地：在
+          <code>showcase/selca</code> 下 <code>./serve.sh</code>，勿用
+          <code>file://</code>。
+        </p>
+        <p style="margin-top: 0.75rem">© 展示用途；不构成投资建议或环境合规结论。</p>
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
