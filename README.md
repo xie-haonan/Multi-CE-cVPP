@@ -40,7 +40,10 @@ Multi-CE-cVPP 旨在构建一个可扩展、可审计、可解释的多能互补
 - `docs/MATHEMATICAL_BOUNDARY.md`：关键守恒方程与约束表达
 - `src/interfaces/`：高维接口与占位函数（仅文档化，不含业务实现）
 - `assets/figures/`：对外展示图表（请替换为你的实际成果图）
-- **`showcase/selca/`**：源码目录（开发与本地预览）。**公网入口（推荐）：** **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`** — 对应仓库根目录 **`selca/`**（由 [`scripts/sync_selca_pages_folder.sh`](scripts/sync_selca_pages_folder.sh) 从 `showcase/selca` 同步），在 **未启用「GitHub Actions」部署**、而使用 **「从分支构建 Pages（Jekyll）」** 时也可访问。若你已把 Pages 改为 **GitHub Actions**，则由 [`.github/workflows/deploy-selca-pages.yml`](.github/workflows/deploy-selca-pages.yml) 发布同一子路径；**请勿**同时使用两种 Source（在 Settings → Pages 中只选一种）。另：**`https://xie-haonan.github.io/Multi-CE-cVPP/showcase/selca/`** 在 Jekyll 构建下通常也可打开，但对外链接建议统一为 **`/selca/`**。
+- **`showcase/selca/`** / **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**：SE-LCA 生命周期量化展示（与私有 `src/selca/demo.py` 同口径快照）。源码在 `showcase/selca`，发布用根目录 **`selca/`** 由 [`scripts/sync_selca_pages_folder.sh`](scripts/sync_selca_pages_folder.sh) 同步。
+- **`showcase/megm/`** / **`https://xie-haonan.github.io/Multi-CE-cVPP/megm/`**：MEGM 市场层展示（税、碳 CET、能源现货、绿证 GCT；与私有 `src/megm/demo.py` 同口径快照）。源码在 `showcase/megm`，发布用根目录 **`megm/`** 由 [`scripts/sync_megm_pages_folder.sh`](scripts/sync_megm_pages_folder.sh) 同步。一键同步两者：[`scripts/sync_showcase_public.sh`](scripts/sync_showcase_public.sh)。
+- **GitHub Pages**：在 **Settings → Pages** 任选 **GitHub Actions**（[`.github/workflows/deploy-selca-pages.yml`](.github/workflows/deploy-selca-pages.yml) 发布门户 + `selca/` + `megm/`）或 **从分支构建（Jekyll）**；**勿混用两种 Source**。门户根：**`https://xie-haonan.github.io/Multi-CE-cVPP/`**（仓库根 [`index.html`](index.html) 为 Jekyll 用带 `layout: null`；Actions 用无头 [`showcase/github_pages_site_root_index.html`](showcase/github_pages_site_root_index.html)）。
+- **挂在个人站 Projects**：可复制 [`showcase/PERSONAL_SITE_PROJECT_SNIPPETS.md`](showcase/PERSONAL_SITE_PROJECT_SNIPPETS.md) 中的 Markdown 到 **`xie-haonan.github.io`** 仓库源码。
 
 ## 展示图（Illustrative）
 

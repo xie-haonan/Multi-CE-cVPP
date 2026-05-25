@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "title": "MEGM 示范算例",
+    "description": "与私有内核 src/megm/demo.py 同口径快照（公开展示，非实时计算）。",
+    "refs_note": "式号与边界见 Core src/megm/README.md；算例系数来自 configs/price_and_tax/price_and_tax.yaml。"
+  },
+  "inputs": {
+    "capacities_kw": {
+      "pv": 158.2678,
+      "bioICE": 64.6103,
+      "gasifier": 818.6995,
+      "orc": 8.7442,
+      "gshp": 278.1024
+    },
+    "series_24h": {
+      "electricity_load_kwh": [
+        182.62,
+        164.68,
+        150.14,
+        145.79,
+        135.24,
+        139.15,
+        146.74,
+        164.8,
+        200.2,
+        224.25,
+        228.53,
+        227.25,
+        218.02,
+        205.55,
+        185.82,
+        210.58,
+        215.86,
+        222.78,
+        226.69,
+        214.98,
+        219.14,
+        209.75,
+        196.05,
+        188.44
+      ],
+      "heat_load_kwh": [
+        277.62,
+        287.47,
+        285.49,
+        287.05,
+        285.71,
+        283.76,
+        277.83,
+        289.33,
+        263.65,
+        274.53,
+        264.9,
+        231.63,
+        176.24,
+        133.41,
+        112.56,
+        101.8,
+        126.15,
+        154.33,
+        179.73,
+        190.48,
+        211.97,
+        230.6,
+        258.83,
+        268.73
+      ],
+      "electricity_purchase_kwh": [
+        274.642531451777,
+        256.702531451777,
+        242.162531451777,
+        237.812531451777,
+        227.262531451777,
+        231.172531451777,
+        238.762531451777,
+        256.822531451777,
+        253.679192233554,
+        272.801509906092,
+        186.269053150712,
+        161.004734077346,
+        151.814424121849,
+        233.019935099053,
+        233.461410164465,
+        282.533721190503,
+        307.882531451777,
+        314.802531451777,
+        318.712531451777,
+        307.002531451777,
+        311.162531451777,
+        301.772531451777,
+        288.072531451777,
+        280.462531451777
+      ],
+      "electricity_sell_kwh": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "heat_purchase_kwh": [
+        0.0,
+        9.3676,
+        7.3876,
+        8.9476,
+        7.6076,
+        5.6576,
+        0.0,
+        11.2276,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "heat_sell_kwh": [
+        0.4824,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.2724,
+        0.0,
+        14.4524,
+        3.5724,
+        13.2024,
+        46.4724,
+        101.8624,
+        144.6924,
+        165.5424,
+        176.3024,
+        151.9524,
+        123.7724,
+        98.3724,
+        87.6224,
+        66.1324,
+        47.5024,
+        19.2724,
+        9.3724
+      ],
+      "biomass_purchase_kg": [
+        277.35610094186,
+        315.173576678683,
+        345.82386080429,
+        354.99365007158,
+        377.233024041673,
+        368.990753688776,
+        352.991052415505,
+        314.920616974757,
+        240.297504316813,
+        189.600163655131,
+        180.577934215131,
+        183.276171057,
+        202.732988283916,
+        229.019717516813,
+        270.610508837187,
+        218.416489927281,
+        207.28626295457,
+        192.698920028215,
+        184.456649675318,
+        209.141300783355,
+        200.372031047281,
+        220.16612787943,
+        249.045694077561,
+        265.087555301486
+      ],
+      "natural_gas_purchase_kg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "natural_gas_sell_kg": [
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761,
+        440.017280607761
+      ]
+    },
+    "assumptions": {
+      "heat_chain_efficiency": 0.6400000000000001,
+      "natural_gas_kwh_per_kg": 13.88888888888889,
+      "renewable_cap_kwh_per_h": 231.6223
+    }
+  },
+  "coefficients": {
+    "pollutant_tax_usd_per_kg": {
+      "co2_eq": 0.04345,
+      "so2_eq": 0.07231,
+      "pm25_eq": 0.00174
+    },
+    "carbon_trading": {
+      "purchase_usd_per_kg_co2_eq": 0.04345,
+      "sell_usd_per_kg_co2_eq": 0.04345,
+      "allowance_grams_per_kwh_total_load": 570.0
+    },
+    "green_certificate": {
+      "purchase_usd_per_kwh": 0.01,
+      "sell_usd_per_kwh": 0.01,
+      "renewable_quota_ratio": 0.0,
+      "lambda_usd_per_mwh": 10.0
+    },
+    "energy_trading": {
+      "electricity": {
+        "purchase_usd_per_unit": 0.1285,
+        "sell_usd_per_unit": 0.06425,
+        "unit": "kwh"
+      },
+      "heat": {
+        "purchase_usd_per_unit": 0.4,
+        "sell_usd_per_unit": 0.2,
+        "unit": "kwh"
+      },
+      "cold": {
+        "purchase_usd_per_unit": 0.4,
+        "sell_usd_per_unit": 0.2,
+        "unit": "kwh"
+      },
+      "natural_gas": {
+        "purchase_usd_per_unit": 0.0366,
+        "sell_usd_per_unit": 0.0183,
+        "unit": "kg"
+      },
+      "biomass": {
+        "purchase_usd_per_unit": 0.1393,
+        "sell_usd_per_unit": 0.06965,
+        "unit": "kg"
+      }
+    }
+  },
+  "selca_construction_summary": {
+    "weighted_life_years": 20.0,
+    "annualization_hours": 175200.0,
+    "raw_material_total_kg": {
+      "steel": 10185.171534000001,
+      "aluminum": 2968.89318,
+      "copper": 1084.59936,
+      "pvc": 1456.0637599999998,
+      "glass": 12661.423999999999
+    },
+    "construction_electricity_kwh": 18354.430752,
+    "equivalent_total_kg": {
+      "co2_eq": 176050.90012169327,
+      "so2_eq": 1741.6169468413632,
+      "pm25_eq": 3813.8061485641465
+    },
+    "equivalent_annual_kg": {
+      "co2_eq": 8802.545006084663,
+      "so2_eq": 87.08084734206815,
+      "pm25_eq": 190.69030742820732
+    },
+    "equivalent_daily_kg": {
+      "co2_eq": 24.116561660505926,
+      "so2_eq": 0.23857766395087168,
+      "pm25_eq": 0.5224391984334448
+    },
+    "equivalent_hourly_kg": {
+      "co2_eq": 1.0048567358544136,
+      "so2_eq": 0.009940735997952987,
+      "pm25_eq": 0.021768299934726863
+    }
+  },
+  "hourly_cashflows": [
+    {
+      "hour": 0,
+      "energy_net_outflow_usd": 65.77847391763243,
+      "tax_signed_usd": -50.166725136053294,
+      "carbon_signed_usd": 61.578959023581426,
+      "green_cert_signed_usd": 1.8262,
+      "equivalent_operational_co2_eq_kg": -1155.9053184983727,
+      "equivalent_total_co2_eq_kg": -1154.9004617625183,
+      "cet_quota_kg_co2_eq": 262.3368
+    },
+    {
+      "hour": 1,
+      "energy_net_outflow_usd": 72.58467828777187,
+      "tax_signed_usd": -50.29452818717964,
+      "carbon_signed_usd": 61.50127103342934,
+      "green_cert_signed_usd": 1.6468,
+      "equivalent_operational_co2_eq_kg": -1158.728632533998,
+      "equivalent_total_co2_eq_kg": -1157.7237757981436,
+      "cet_quota_kg_co2_eq": 257.7255
+    },
+    {
+      "hour": 2,
+      "energy_net_outflow_usd": 74.19387286646892,
+      "tax_signed_usd": -50.53630839845074,
+      "carbon_signed_usd": 61.329577097347396,
+      "green_cert_signed_usd": 1.5013999999999998,
+      "equivalent_operational_co2_eq_kg": -1164.1935035102479,
+      "equivalent_total_co2_eq_kg": -1163.1886467743934,
+      "cet_quota_kg_co2_eq": 248.3091
+    },
+    {
+      "hour": 3,
+      "energy_net_outflow_usd": 75.53624951140242,
+      "tax_signed_usd": -50.5787877483896,
+      "carbon_signed_usd": 61.30169955507928,
+      "green_cert_signed_usd": 1.4579,
+      "equivalent_operational_co2_eq_kg": -1165.142202997748,
+      "equivalent_total_co2_eq_kg": -1164.1373462618935,
+      "cet_quota_kg_co2_eq": 246.71880000000002
+    },
+    {
+      "hour": 4,
+      "energy_net_outflow_usd": 76.74251930543637,
+      "tax_signed_usd": -50.752879022091264,
+      "carbon_signed_usd": 61.17817591098583,
+      "green_cert_signed_usd": 1.3524,
+      "equivalent_operational_co2_eq_kg": -1169.0766113039979,
+      "equivalent_total_co2_eq_kg": -1168.0717545681434,
+      "cet_quota_kg_co2_eq": 239.9415
+    },
+    {
+      "hour": 5,
+      "energy_net_outflow_usd": 75.31680604527781,
+      "tax_signed_usd": -50.72229479646276,
+      "carbon_signed_usd": 61.19725554672688,
+      "green_cert_signed_usd": 1.3915000000000002,
+      "equivalent_operational_co2_eq_kg": -1168.398528352123,
+      "equivalent_total_co2_eq_kg": -1167.3936716162686,
+      "cet_quota_kg_co2_eq": 241.0587
+    },
+    {
+      "hour": 6,
+      "energy_net_outflow_usd": 71.74584265791117,
+      "tax_signed_usd": -50.69267433637152,
+      "carbon_signed_usd": 61.2108871430077,
+      "green_cert_signed_usd": 1.4674,
+      "equivalent_operational_co2_eq_kg": -1167.7660589914979,
+      "equivalent_total_co2_eq_kg": -1166.7612022556434,
+      "cet_quota_kg_co2_eq": 242.0049
+    },
+    {
+      "hour": 7,
+      "energy_net_outflow_usd": 73.30886100101498,
+      "tax_signed_usd": -50.266959614577786,
+      "carbon_signed_usd": 61.522808033806406,
+      "green_cert_signed_usd": 1.6480000000000001,
+      "equivalent_operational_co2_eq_kg": -1158.095705730248,
+      "equivalent_total_co2_eq_kg": -1157.0908489943936,
+      "cet_quota_kg_co2_eq": 258.8541
+    },
+    {
+      "hour": 8,
+      "energy_net_outflow_usd": 55.128422318221716,
+      "tax_signed_usd": -50.66949536890409,
+      "carbon_signed_usd": 62.164697341396256,
+      "green_cert_signed_usd": 2.002,
+      "equivalent_operational_co2_eq_kg": -1167.3283622915794,
+      "equivalent_total_co2_eq_kg": -1166.323505555725,
+      "cet_quota_kg_co2_eq": 264.3945
+    },
+    {
+      "hour": 9,
+      "energy_net_outflow_usd": 52.69950058497055,
+      "tax_signed_usd": -50.23672228896519,
+      "carbon_signed_usd": 62.60285911487648,
+      "green_cert_signed_usd": 2.2425,
+      "equivalent_operational_co2_eq_kg": -1157.5025378607447,
+      "equivalent_total_co2_eq_kg": -1156.4976811248903,
+      "cet_quota_kg_co2_eq": 284.3046
+    },
+    {
+      "hour": 10,
+      "energy_net_outflow_usd": 38.39728333091222,
+      "tax_signed_usd": -51.64576510975124,
+      "carbon_signed_usd": 63.8536600991116,
+      "green_cert_signed_usd": 2.2853,
+      "equivalent_operational_co2_eq_kg": -1189.339172135431,
+      "equivalent_total_co2_eq_kg": -1188.3343153995766,
+      "cet_quota_kg_co2_eq": 281.25509999999997
+    },
+    {
+      "hour": 11,
+      "energy_net_outflow_usd": 28.872682722057036,
+      "tax_signed_usd": -52.47963832690672,
+      "carbon_signed_usd": 63.82380408436709,
+      "green_cert_signed_usd": 2.2725,
+      "equivalent_operational_co2_eq_kg": -1208.3455371585721,
+      "equivalent_total_co2_eq_kg": -1207.3406804227177,
+      "cet_quota_kg_co2_eq": 261.5616
+    },
+    {
+      "hour": 12,
+      "energy_net_outflow_usd": 19.324062532485073,
+      "tax_signed_usd": -53.38340819959106,
+      "carbon_signed_usd": 63.12348067273161,
+      "green_cert_signed_usd": 2.1802,
+      "equivalent_operational_co2_eq_kg": -1229.061022046133,
+      "equivalent_total_co2_eq_kg": -1228.0561653102786,
+      "cet_quota_kg_co2_eq": 224.7282
+    },
+    {
+      "hour": 13,
+      "energy_net_outflow_usd": 24.854712075198336,
+      "tax_signed_usd": -52.7805486200544,
+      "carbon_signed_usd": 61.174285498554134,
+      "green_cert_signed_usd": 2.0555000000000003,
+      "equivalent_operational_co2_eq_kg": -1215.7213736185731,
+      "equivalent_total_co2_eq_kg": -1214.7165168827187,
+      "cet_quota_kg_co2_eq": 193.2072
+    },
+    {
+      "hour": 14,
+      "energy_net_outflow_usd": 26.53503885203188,
+      "tax_signed_usd": -53.06324886001252,
+      "carbon_signed_usd": 60.451728006249105,
+      "green_cert_signed_usd": 1.8582,
+      "equivalent_operational_co2_eq_kg": -1222.222342035028,
+      "equivalent_total_co2_eq_kg": -1221.2174852991736,
+      "cet_quota_kg_co2_eq": 170.0766
+    },
+    {
+      "hour": 15,
+      "energy_net_outflow_usd": 23.418203984727853,
+      "tax_signed_usd": -52.48918594076438,
+      "carbon_signed_usd": 60.23871086684716,
+      "green_cert_signed_usd": 2.1058000000000003,
+      "equivalent_operational_co2_eq_kg": -1209.339761151209,
+      "equivalent_total_co2_eq_kg": -1208.3349044153545,
+      "cet_quota_kg_co2_eq": 178.0566
+    },
+    {
+      "hour": 16,
+      "energy_net_outflow_usd": 29.99508548600292,
+      "tax_signed_usd": -51.7777954329528,
+      "carbon_signed_usd": 60.26906781244571,
+      "green_cert_signed_usd": 2.1586000000000003,
+      "equivalent_operational_co2_eq_kg": -1193.149325031498,
+      "equivalent_total_co2_eq_kg": -1192.1444682956435,
+      "cet_quota_kg_co2_eq": 194.9457
+    },
+    {
+      "hour": 17,
+      "energy_net_outflow_usd": 34.48828861636167,
+      "tax_signed_usd": -51.284915503815654,
+      "carbon_signed_usd": 60.648028585174025,
+      "green_cert_signed_usd": 2.2278000000000002,
+      "equivalent_operational_co2_eq_kg": -1181.864091952748,
+      "equivalent_total_co2_eq_kg": -1180.8592352168935,
+      "cet_quota_kg_co2_eq": 214.95270000000002
+    },
+    {
+      "hour": 18,
+      "energy_net_outflow_usd": 38.92257535620312,
+      "tax_signed_usd": -50.87496320573494,
+      "carbon_signed_usd": 60.9655809183174,
+      "green_cert_signed_usd": 2.2669,
+      "equivalent_operational_co2_eq_kg": -1172.4658461102479,
+      "equivalent_total_co2_eq_kg": -1171.4609893743934,
+      "cet_quota_kg_co2_eq": 231.65939999999998
+    },
+    {
+      "hour": 19,
+      "energy_net_outflow_usd": 43.006412255552675,
+      "tax_signed_usd": -50.89845386448527,
+      "carbon_signed_usd": 60.962022541543874,
+      "green_cert_signed_usd": 2.1498,
+      "equivalent_operational_co2_eq_kg": -1172.931150212123,
+      "equivalent_total_co2_eq_kg": -1171.9262934762685,
+      "cet_quota_kg_co2_eq": 231.11219999999997
+    },
+    {
+      "hour": 20,
+      "energy_net_outflow_usd": 46.617412981317564,
+      "tax_signed_usd": -50.53905169989624,
+      "carbon_signed_usd": 61.23948530922865,
+      "green_cert_signed_usd": 2.1914,
+      "equivalent_operational_co2_eq_kg": -1164.6964446352479,
+      "equivalent_total_co2_eq_kg": -1163.6915878993934,
+      "cet_quota_kg_co2_eq": 245.73270000000002
+    },
+    {
+      "hour": 21,
+      "energy_net_outflow_usd": 51.894115670035916,
+      "tax_signed_usd": -50.4190437566364,
+      "carbon_signed_usd": 61.34586969502624,
+      "green_cert_signed_usd": 2.0975,
+      "equivalent_operational_co2_eq_kg": -1161.878076989623,
+      "equivalent_total_co2_eq_kg": -1160.8732202537685,
+      "cet_quota_kg_co2_eq": 250.9995
+    },
+    {
+      "hour": 22,
+      "energy_net_outflow_usd": 59.80258924143557,
+      "tax_signed_usd": -50.22940384395592,
+      "carbon_signed_usd": 61.51253058126735,
+      "green_cert_signed_usd": 1.9605000000000001,
+      "equivalent_operational_co2_eq_kg": -1157.4316705739982,
+      "equivalent_total_co2_eq_kg": -1156.4268138381437,
+      "cet_quota_kg_co2_eq": 259.2816
+    },
+    {
+      "hour": 23,
+      "energy_net_outflow_usd": 63.03933550992832,
+      "tax_signed_usd": -50.2042517772957,
+      "carbon_signed_usd": 61.54201746097053,
+      "green_cert_signed_usd": 1.8844,
+      "equivalent_operational_co2_eq_kg": -1156.805009922748,
+      "equivalent_total_co2_eq_kg": -1155.8001531868936,
+      "cet_quota_kg_co2_eq": 260.5869
+    }
+  ],
+  "daily_totals_usd": {
+    "energy_net_outflow": 1222.203025110358,
+    "tax_signed": -1226.987049039299,
+    "carbon_signed": 1476.7384619320712,
+    "green_cert_signed": 46.2305
+  }
+}

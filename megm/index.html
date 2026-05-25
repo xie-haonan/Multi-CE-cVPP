@@ -1,0 +1,175 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MEGM 市场层展示 | Multi-CE-cVPP</title>
+    <meta
+      name="description"
+      content="多要素绿色市场 MEGM：污染物税、碳交易 CET、能源现货、绿证 GCT — 与私有内核 demo 同口径快照。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div>
+            <h1>Multi-CE-cVPP · MEGM</h1>
+            <span>多要素绿色市场层 · Showcase</span>
+          </div>
+        </div>
+        <nav class="nav" aria-label="页面内导航">
+          <a href="#overview">总览</a>
+          <a href="#loads">负荷</a>
+          <a href="#cash">现金流</a>
+          <a href="#selca">建设折算</a>
+          <a href="#coeff">系数</a>
+          <a href="#compliance">合规</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero" id="overview">
+        <div class="hero-badge">示范算例 · 与私有内核 src/megm/demo.py 同口径快照</div>
+        <h2>MEGM：税、碳、现货与绿证的<br />逐时货币流展示</h2>
+        <p class="hero-lead">
+          在 <strong>SELCA</strong> 建设阶段等效排放折算到小时强度的基础上，对 24h 算例逐时计算
+          <strong>四载体现货</strong>、<strong>等效污染物税</strong>、<strong>CET</strong> 与
+          <strong>绿证 GCT</strong>。数据为预计算 JSON；系数来自私有仓库
+          <code>configs/price_and_tax/price_and_tax.yaml</code>（快照内已固化结果）。
+        </p>
+        <div class="hero-note">
+          <strong>保密与边界：</strong>本页不含业务实盘数据与求解器实现；合作洽谈请在 NDA 下审阅私有核心库。
+        </div>
+      </section>
+
+      <div class="kpi-grid" id="kpi-root" aria-live="polite"></div>
+
+      <section class="block" id="loads">
+        <div class="block-head">
+          <div>
+            <h3>24h 电 / 热负荷</h3>
+            <p>与 demo 输入序列一致；用于 CET 配额与 GCT 可再生上限等计算。</p>
+          </div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h4>负荷曲线</h4>
+            <div class="canvas-wrap"><canvas id="chart-loads"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h4>设备装机（算例）</h4>
+            <div class="canvas-wrap"><canvas id="chart-capacity"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="cash">
+        <div class="block-head">
+          <div>
+            <h3>逐时市场现金流</h3>
+            <p>能源现货为各载体净流出之和；税、碳、绿证为签约口径有符号量（与 demo 打印列一致）。</p>
+          </div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h4>逐时：现货 / 税 / 碳 / 绿证（USD）</h4>
+            <div class="canvas-wrap"><canvas id="chart-cashflows"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h4>逐时：CO₂-eq（运行项 vs 含建设小时强度）</h4>
+            <div class="canvas-wrap"><canvas id="chart-co2"></canvas></div>
+          </div>
+        </div>
+        <div class="chart-grid" style="margin-top: 1.25rem">
+          <div class="chart-card">
+            <h4>日汇总（USD）</h4>
+            <div class="canvas-wrap"><canvas id="chart-daily-bar"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="selca">
+        <div class="block-head">
+          <div>
+            <h3>SELCA 建设阶段 → 小时强度</h3>
+            <p>装机驱动建设期清单与等效排放，再按容量加权寿命折算到小时，并入逐时税务与 CET 边界。</p>
+          </div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h4>建设期原材料（无回收合计）</h4>
+            <div class="canvas-wrap"><canvas id="chart-materials"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="coeff">
+        <div class="block-head">
+          <div>
+            <h3>市场系数摘要</h3>
+            <p>快照内嵌；完整字段说明见私有库 <code>megm_settings</code> 与 YAML。</p>
+          </div>
+        </div>
+        <div id="coeff-table"></div>
+      </section>
+
+      <section class="block" id="compliance">
+        <div class="block-head">
+          <div>
+            <h3>方法学与合规</h3>
+            <p>市场层式号与 MATLAB 对齐说明见私有库 README；下列为通用 LCA 框架引用。</p>
+          </div>
+        </div>
+        <div class="hero-note" style="border-left-color: var(--accent)">
+          <ul style="margin: 0; padding-left: 1.1rem">
+            <li>
+              <strong>ISO 14040:2006</strong> —
+              <a href="https://www.iso.org/standard/37456.html" target="_blank" rel="noopener"
+                >LCA — Principles and framework</a
+              >
+            </li>
+            <li>
+              <strong>ISO 14044:2006</strong> —
+              <a href="https://www.iso.org/standard/38498.html" target="_blank" rel="noopener"
+                >LCA — Requirements and guidelines</a
+              >
+            </li>
+          </ul>
+          <p style="margin: 0.75rem 0 0; font-size: 0.82rem">
+            价格、税率与碳价等为<strong>算例快照</strong>；政策披露须在私有配置中绑定官方文件与检索日期。
+          </p>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p><strong>Multi-CE-cVPP</strong>（Showcase）— MEGM 可视化。</p>
+        <p>
+          线上入口：<a href="https://xie-haonan.github.io/Multi-CE-cVPP/megm/"
+            >https://xie-haonan.github.io/Multi-CE-cVPP/megm/</a
+          >
+          · 本地：<code>cd showcase/megm && ./serve.sh</code>
+        </p>
+        <p style="margin-top: 0.75rem">© 展示用途；不构成投资建议或合规结论。</p>
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

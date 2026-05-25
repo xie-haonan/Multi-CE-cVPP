@@ -67,28 +67,34 @@ PY
 
 ## GitHub Pages（公网访问，不依赖本机）
 
-与 [个人主页 `https://xie-haonan.github.io/`](https://xie-haonan.github.io/) 一样，均由 **GitHub Pages** 托管；本仓库使用 **项目站**，域名下路径形如 **`https://xie-haonan.github.io/Multi-CE-cVPP/...`**（在 `github.io` 下的子路径即 **`/Multi-CE-cVPP/`**，其下再挂 **`selca/`**）。
+与 [个人主页 `https://xie-haonan.github.io/`](https://xie-haonan.github.io/) 一样，均由 **GitHub Pages** 托管；本仓库使用 **项目站**，域名下路径形如 **`https://xie-haonan.github.io/Multi-CE-cVPP/...`**。
 
-| 类型 | 仓库 | 说明 |
-|------|------|------|
-| **用户站** | `xie-haonan.github.io` | 根地址 `https://xie-haonan.github.io/` |
-| **项目站** | `Multi-CE-cVPP` | **展示入口：** **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**（推荐挂在个人站 Projects 的链接） |
+### 推荐对外链接（Projects / 路演）
 
-工作流：[`.github/workflows/deploy-selca-pages.yml`](../../.github/workflows/deploy-selca-pages.yml) 将 `showcase/selca` 复制到发布产物的 **`selca/`** 子目录；根路径 **`https://xie-haonan.github.io/Multi-CE-cVPP/`** 通过 [`showcase/github_pages_site_root_index.html`](../github_pages_site_root_index.html) **302 式跳转到 `selca/`**。
+**`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**
 
-### 一次性设置（GitHub 网页）
+### 为什么有时「/selca/」打不开？
 
-1. **Settings → Pages** → **Source** 选 **GitHub Actions**。
-2. 推送 `main` 后，在 **Actions** 中确认 **Deploy SELCA showcase to GitHub Pages** 成功。
-3. 打开 **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**（首次约 1～2 分钟生效）。
+GitHub Pages **同一时间只能选一种发布来源**（Settings → Pages）：
 
-### 个人站 Projects 链接写法
+| Source | 行为 |
+|--------|------|
+| **Deploy from a branch**（默认 Jekyll） | 只发布仓库里**真实存在的文件**。此前仅有 `showcase/selca/` 时，Jekyll 会生成 **`…/showcase/selca/`**，**不会**自动生成 **`…/selca/`**。 |
+| **GitHub Actions** | 由工作流上传构建产物；可按子路径发布 **`…/selca/`**（见仓库根 `.github/workflows/deploy-selca-pages.yml`）。 |
 
-在 `xie-haonan.github.io` 仓库的个人站源码里，Projects 条目可使用（建议带末尾 `/`，避免部分服务器相对路径歧义）：
+本仓库已增加 **仓库根目录 `selca/`**（内容与 `showcase/selca` 同步，且 `index.html` 带 `layout: null` 以免 Jekyll 套默认模板），这样在 **「从分支发布」** 时 **`/Multi-CE-cVPP/selca/`** 也会存在。更新展示后请在仓库根执行：
 
-- **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**
+```bash
+./scripts/sync_selca_pages_folder.sh
+git add selca && git commit -m "Sync selca public folder" && git push
+```
 
-不带末尾斜杠的 **`.../selca`** 通常也会由 GitHub Pages 解析到同一页面。
+在 **「从分支发布」** 下，**`https://xie-haonan.github.io/Multi-CE-cVPP/showcase/selca/`** 通常也可访问；对外建议统一写 **`/selca/`**。
+
+### 一次性设置（GitHub Actions 方案，可选）
+
+1. **Settings → Pages** → **Source** 选 **GitHub Actions**（与「从分支发布」二选一）。
+2. 推送 `main` 后检查 Actions 是否成功。
 
 ### 合规
 

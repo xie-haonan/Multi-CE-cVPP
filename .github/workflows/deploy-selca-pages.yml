@@ -1,8 +1,8 @@
-# 将 ``showcase/selca`` 发布到 GitHub Pages 子路径 ``/selca/``（便于挂在 xie-haonan.github.io 域名下的项目路径）。
+# 将 ``showcase/selca`` 与 ``showcase/megm`` 发布到 GitHub Pages 子路径 ``/selca/``、``/megm/``。
 # 启用：Settings → Pages → Source → GitHub Actions
-# 展示页：https://<owner>.github.io/<repo>/selca/
-# 仓库根 URL 自动跳转到 selca/（见 ``showcase/github_pages_site_root_index.html``）。
-name: Deploy SELCA showcase to GitHub Pages
+# 访问：https://<owner>.github.io/<repo>/selca/ 与 …/megm/
+# 根路径为静态门户（无 Jekyll 头，便于 Actions 原样托管）。
+name: Deploy showcase pages to GitHub Pages
 
 on:
   push:
@@ -31,11 +31,12 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Assemble site (root redirect + /selca/ app)
+      - name: Assemble site (portal + /selca/ + /megm/)
         run: |
           set -euo pipefail
-          mkdir -p _site/selca
+          mkdir -p _site/selca _site/megm
           cp -R showcase/selca/. _site/selca/
+          cp -R showcase/megm/. _site/megm/
           cp showcase/github_pages_site_root_index.html _site/index.html
 
       - name: Upload static artifact
