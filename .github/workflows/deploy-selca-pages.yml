@@ -1,6 +1,7 @@
-# 将 ``showcase/selca`` 静态站发布为 GitHub Pages（站点根 = 该目录，无需本地服务器）。
-# 启用方式：仓库 Settings → Pages → Build and deployment → Source 选「GitHub Actions」。
-# 发布后访问：https://<owner>.github.io/<repo>/
+# 将 ``showcase/selca`` 发布到 GitHub Pages 子路径 ``/selca/``（便于挂在 xie-haonan.github.io 域名下的项目路径）。
+# 启用：Settings → Pages → Source → GitHub Actions
+# 展示页：https://<owner>.github.io/<repo>/selca/
+# 仓库根 URL 自动跳转到 selca/（见 ``showcase/github_pages_site_root_index.html``）。
 name: Deploy SELCA showcase to GitHub Pages
 
 on:
@@ -30,10 +31,17 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Assemble site (root redirect + /selca/ app)
+        run: |
+          set -euo pipefail
+          mkdir -p _site/selca
+          cp -R showcase/selca/. _site/selca/
+          cp showcase/github_pages_site_root_index.html _site/index.html
+
       - name: Upload static artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: showcase/selca
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

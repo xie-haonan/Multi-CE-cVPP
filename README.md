@@ -40,7 +40,7 @@ Multi-CE-cVPP 旨在构建一个可扩展、可审计、可解释的多能互补
 - `docs/MATHEMATICAL_BOUNDARY.md`：关键守恒方程与约束表达
 - `src/interfaces/`：高维接口与占位函数（仅文档化，不含业务实现）
 - `assets/figures/`：对外展示图表（请替换为你的实际成果图）
-- **`showcase/selca/`**：**SE-LCA 生命周期量化可视化**（静态页 + 预计算 JSON；适合企业展示）。说明见 [`showcase/selca/README.md`](showcase/selca/README.md)。本地：`cd showcase/selca && ./serve.sh`。**公网**：在仓库 **Settings → Pages** 将 **Source** 设为 **GitHub Actions**，推送 `main` 后由 [`.github/workflows/deploy-selca-pages.yml`](.github/workflows/deploy-selca-pages.yml) 发布，访问 **`https://<你的用户名>.github.io/Multi-CE-cVPP/`**（与 [个人主页](https://xie-haonan.github.io/) 同属 GitHub Pages，只是项目站带仓库名路径）。
+- **`showcase/selca/`**：**SE-LCA 生命周期量化可视化**（静态页 + 预计算 JSON；适合企业展示）。说明见 [`showcase/selca/README.md`](showcase/selca/README.md)。本地：`cd showcase/selca && ./serve.sh`。**公网**：在仓库 **Settings → Pages** 将 **Source** 设为 **GitHub Actions**，推送 `main` 后由 [`.github/workflows/deploy-selca-pages.yml`](.github/workflows/deploy-selca-pages.yml) 发布。**正式入口（可挂在个人站 Projects）：** **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**；访问仓库根路径 `https://xie-haonan.github.io/Multi-CE-cVPP/` 会自动跳转到 `selca/`。（与 [个人主页](https://xie-haonan.github.io/) 同属 `github.io` 域名，本链接为项目站子路径。）
 
 ## 展示图（Illustrative）
 

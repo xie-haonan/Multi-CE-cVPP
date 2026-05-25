@@ -67,32 +67,31 @@ PY
 
 ## GitHub Pages（公网访问，不依赖本机）
 
-可以。与 [个人主页 `https://xie-haonan.github.io/`](https://xie-haonan.github.io/) 类似，均由 **GitHub Pages** 托管静态文件；区别在于：
+与 [个人主页 `https://xie-haonan.github.io/`](https://xie-haonan.github.io/) 一样，均由 **GitHub Pages** 托管；本仓库使用 **项目站**，域名下路径形如 **`https://xie-haonan.github.io/Multi-CE-cVPP/...`**（在 `github.io` 下的子路径即 **`/Multi-CE-cVPP/`**，其下再挂 **`selca/`**）。
 
-| 类型 | 典型仓库名 | 访问地址 |
-|------|------------|----------|
-| **用户/组织站** | `xie-haonan.github.io` | `https://xie-haonan.github.io/`（仓库根即网站根） |
-| **项目站**（本仓库） | `Multi-CE-cVPP` | `https://<你的用户名>.github.io/Multi-CE-cVPP/` |
+| 类型 | 仓库 | 说明 |
+|------|------|------|
+| **用户站** | `xie-haonan.github.io` | 根地址 `https://xie-haonan.github.io/` |
+| **项目站** | `Multi-CE-cVPP` | **展示入口：** **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**（推荐挂在个人站 Projects 的链接） |
 
-本仓库已提供 **GitHub Actions** 工作流 [`.github/workflows/deploy-selca-pages.yml`](../../.github/workflows/deploy-selca-pages.yml)：把 `showcase/selca` 整目录作为 **网站根** 发布，因此上线后 **项目站首页就是 SELCA 大屏**（无需再敲 `/showcase/selca/`）。
+工作流：[`.github/workflows/deploy-selca-pages.yml`](../../.github/workflows/deploy-selca-pages.yml) 将 `showcase/selca` 复制到发布产物的 **`selca/`** 子目录；根路径 **`https://xie-haonan.github.io/Multi-CE-cVPP/`** 通过 [`showcase/github_pages_site_root_index.html`](../github_pages_site_root_index.html) **302 式跳转到 `selca/`**。
 
-### 一次性设置（在 GitHub 网页上操作）
+### 一次性设置（GitHub 网页）
 
-1. 打开仓库 **Settings → Pages**。
-2. **Build and deployment** 里 **Source** 选 **GitHub Actions**（不要选「Deploy from a branch」除非你改用 `docs/` 方案）。
-3. 将工作流与 `showcase/selca` 推送到 **`main`**；在 **Actions** 里确认 **Deploy SELCA showcase to GitHub Pages** 成功。
-4. 浏览器访问：**`https://<你的 GitHub 用户名>.github.io/Multi-CE-cVPP/`**（首次可能要等 1～2 分钟）。
+1. **Settings → Pages** → **Source** 选 **GitHub Actions**。
+2. 推送 `main` 后，在 **Actions** 中确认 **Deploy SELCA showcase to GitHub Pages** 成功。
+3. 打开 **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**（首次约 1～2 分钟生效）。
 
-若 Pages 里出现 **Configure** 环境权限提示，按 GitHub 提示为 `github-pages` 环境放行一次即可。
+### 个人站 Projects 链接写法
 
-### 若希望网址完全是 `https://xie-haonan.github.io/` 下某一子路径
+在 `xie-haonan.github.io` 仓库的个人站源码里，Projects 条目可使用（建议带末尾 `/`，避免部分服务器相对路径歧义）：
 
-个人站仓库与项目站是两套机制：可以把本页 **链接** 挂在个人站「Projects」里指向 `https://xie-haonan.github.io/Multi-CE-cVPP/`；或另建专门展示仓库并单独开 Pages。
+- **`https://xie-haonan.github.io/Multi-CE-cVPP/selca/`**
+
+不带末尾斜杠的 **`.../selca`** 通常也会由 GitHub Pages 解析到同一页面。
 
 ### 合规
 
-公网托管的仍是 **展示快照 + 静态前端**，不含私有内核；与页脚声明一致。
+公网托管的仍是 **展示快照 + 静态前端**，不含私有内核；不替代合规披露。方法学框架引用见页面内 ISO 链接。
 
-## 合规
-
-展示数据为 **课题算例快照**；不替代环境合规披露或投资尽调。方法学框架引用见页面底部 ISO 14040/14044 链接。
+展示数据为 **课题算例快照**；不替代环境合规披露或投资尽调。
