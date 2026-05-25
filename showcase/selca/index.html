@@ -168,10 +168,10 @@
         <p><strong>Multi-CE-cVPP</strong>（Showcase Edition）— 架构与接口公开展示。</p>
         <p>
           数据文件：<code>snapshot/selca_demo_snapshot.json</code>（避开仓库根
-          <code>.gitignore</code> 的 <code>data/</code> 规则）· 本地预览：<code
-            >cd showcase/selca && python3 -m http.server 8765</code
-          >
-          后访问 <code>http://localhost:8765</code>
+          <code>.gitignore</code> 的 <code>data/</code> 规则）· 本地预览：在
+          <code>showcase/selca</code> 下执行 <code>./serve.sh</code> 或
+          <code>python3 -m http.server 8765 --bind 127.0.0.1</code>，再打开
+          <code>http://127.0.0.1:8765/</code>；勿用 <code>file://</code> 打开本页。
         </p>
         <p style="margin-top: 0.75rem">© 展示用途；不构成投资建议或环境合规结论。</p>
       </footer>
