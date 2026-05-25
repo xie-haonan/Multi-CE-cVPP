@@ -40,6 +40,7 @@ Multi-CE-cVPP 旨在构建一个可扩展、可审计、可解释的多能互补
 - `docs/MATHEMATICAL_BOUNDARY.md`：关键守恒方程与约束表达
 - `src/interfaces/`：高维接口与占位函数（仅文档化，不含业务实现）
 - `assets/figures/`：对外展示图表（请替换为你的实际成果图）
+- **`showcase/selca/`**：**SE-LCA 生命周期量化可视化**（静态页 + 预计算 JSON 快照，与私有内核 `demo.py` 同口径；适合企业展示，**无**可执行内核）。说明见 [`showcase/selca/README.md`](showcase/selca/README.md)；本地预览：`cd showcase/selca && python3 -m http.server 8765` 后打开 <http://localhost:8765>。
 
 ## 展示图（Illustrative）
 
